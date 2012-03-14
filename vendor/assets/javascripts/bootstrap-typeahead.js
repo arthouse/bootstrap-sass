@@ -115,7 +115,7 @@
 
       items = $.grep(results, function (item) {
         if (!that.strings)
-          item = item[that.options.property]
+          item = item[that.options.display]
         if (that.matcher(item)) return item
       })
 
@@ -141,7 +141,7 @@
 
       while (item = items.shift()) {
         if (this.strings) sortby = item
-        else sortby = item[this.options.property]
+        else sortby = item[this.options.display]
 
         if (!sortby.toLowerCase().indexOf(this.query.toLowerCase())) beginswith.push(item)
         else if (~sortby.indexOf(this.query)) caseSensitive.push(item)
@@ -163,7 +163,7 @@
       items = $(items).map(function (i, item) {
         i = $(that.options.item).attr('data-value', JSON.stringify(item))
         if (!that.strings)
-            item = item[that.options.property]
+            item = item[that.options.display]
         i.find('a').html(that.highlighter(item))
         return i[0]
       })
@@ -308,6 +308,7 @@
   , autoselect: true
   , autowidth: true
   , property: 'value'
+	, display: 'value'
   }
 
   $.fn.typeahead.Constructor = Typeahead
